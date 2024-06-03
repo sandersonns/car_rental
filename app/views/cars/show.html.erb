@@ -1,0 +1,10 @@
+<h1><%= @car.brand %> <%= @car.model %></h1>
+
+<p><strong>Year of Production:</strong> <%= @car.year_of_production %></p>
+<p><strong>Address:</strong> <%= @car.address %></p>
+<p><strong>Price Per Day:</strong> <%= @car.price_per_day %></p>
+
+<%= link_to 'Edit', edit_car_path(@car) %>
+<%= link_to 'Destroy', car_path(@car), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+<%= link_to 'Back', cars_path %>
+

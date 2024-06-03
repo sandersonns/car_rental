@@ -1,0 +1,15 @@
+<h1>Edit Car</h1>
+
+<%= simple_form_for @car do |f| %>
+  <%= f.input :brand %>
+  <%= f.input :model %>
+  <%= f.input :year_of_production %>
+  <%= f.input :address %>
+  <%= f.input :price_per_day %>
+
+  <div class="actions">
+    <%= f.button :submit, 'Update Car' %>
+  </div>
+<% end %>
+
+<%= link_to 'Cancel', car_path(@car) %>

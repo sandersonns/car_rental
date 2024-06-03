@@ -1,0 +1,36 @@
+<h1>All Cars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Year of Production</th>
+      <th>Address</th>
+      <th>Price Per Day</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.brand %></td>
+        <td><%= car.model %></td>
+        <td><%= car.year_of_production %></td>
+        <td><%= car.address %></td>
+        <td><%= car.price_per_day %></td>
+        <td>
+          <%= link_to 'Show', car %>
+          <%= link_to 'Edit', edit_car_path(car) %>
+          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Return', root_path %>
+<%= link_to 'New Car', new_car_path %>
+

@@ -1,0 +1,16 @@
+<div class="form-inputs">
+  <% if @car.errors.any? %>
+    <% @car.errors.full_messages.each do |error| %>
+      <p style="color: orange"><%= error %></p>
+    <% end %>
+  <% end %>
+  <%= simple_form_for @shipment, html: { id: "edit_car" }, data: { controller: 'flatpickr' } do |f| %>
+    <%= f.input :brand, disabled: true %>
+    <%= f.input :model, disabled: true %>
+    <%= f.input :year_of_production, disabled: true %>
+    <%= f.input :address, disabled: true %>
+    <%= f.input :price_per_day, disabled: true %>
+
+    <%= f.button :submit, 'Update car', class: 'btn btn-light custom-bg-blue' %>
+  <% end %>
+  
