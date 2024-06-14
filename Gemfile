@@ -82,3 +82,5 @@ group :test do
 end
 
 gem "pundit"
+
+gem 'leaflet-rails', '~> 1.7'
