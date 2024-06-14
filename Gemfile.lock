@@ -138,6 +138,9 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    leaflet-rails (1.9.4)
+      actionpack (>= 4.2.0)
+      railties (>= 4.2.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -172,6 +175,8 @@ GEM
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
+    pundit (2.3.2)
+      activesupport (>= 3.0.0)
     racc (1.7.1)
     rack (2.2.6.4)
     rack-test (2.1.0)
@@ -295,8 +300,10 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
+  leaflet-rails (~> 1.7)
   pg (~> 1.1)
   puma (~> 5.0)
+  pundit
   rails (~> 7.0.4, >= 7.0.4.3)
   redis (~> 4.0)
   rspec-rails

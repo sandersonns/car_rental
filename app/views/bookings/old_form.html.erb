@@ -3,17 +3,15 @@
   <button data-action="click->hello#greet">Greet</button>
 </div>
 
-<%= form_with model: @booking, local: true, data: { controller: "flatpickr" } do |form| %>
-  <div>
-    <%= form.label :starts_at, 'Starts at' %>
-    <%= form.text_field :starts_at, class: 'fp_date_time' %>
-  </div>
 
-  <div>
-    <%= form.label :ends_at, 'Ends at' %>
-    <%= form.text_field :ends_at, class: 'fp_date_time' %>
-  </div>
+<%= simple_form_for(@booking, data: {
+  controller: "flatpickr"
+  }) do |f| %>
+  <%= f.input :starts_at, as: :string, input_html: {class: 'fp_date_time'} %>
+  <%= f.input :ends_at, as: :string, input_html: {class: 'fp_date_time'} %>
+<% end %>
 
+<%= form_with model: @booking, local: true do |form| %>
   <div>
     <%= form.label :user_id, 'User' %>
     <%= form.collection_select :user_id, User.all, :id, :email, prompt: 'Select a User' %>
