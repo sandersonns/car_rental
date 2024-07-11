@@ -1,5 +1,7 @@
 <h1>All Cars</h1>
 
+<div id="map" data-controller="leafletmapping" data-leafletmapping-target="map" style="height: 400px;"></div>
+
 <table>
   <thead>
     <tr>
@@ -8,6 +10,7 @@
       <th>Year of Production</th>
       <th>Address</th>
       <th>Price Per Day</th>
+      <th>Car's Owner</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -19,10 +22,13 @@
         <td><%= car.year_of_production %></td>
         <td><%= car.address %></td>
         <td><%= car.price_per_day %></td>
+        <td><%= car.user.email.split('@').first.capitalize %></td>
         <td>
           <%= link_to 'Show', car %>
-          <%= link_to 'Edit', edit_car_path(car) %>
-          
+          <% if policy(car).edit? %>
+            <%= link_to 'Edit', edit_car_path(car) %>
+          <% end %>
+          <button class="show-location" data-car-address="<%= car.address %>" data-leafletmapping-target="button">Show Location</button>
         </td>
       </tr>
     <% end %>
@@ -33,4 +39,3 @@
 
 <%= link_to 'Return', root_path %>
 <%= link_to 'New Car', new_car_path %>
-

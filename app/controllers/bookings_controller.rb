@@ -1,32 +1,41 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
 
   def index
-    @bookings = Booking.all
+    @bookings = policy_scope(Booking)
   end
 
   def show
+    @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def new
-    @booking = Booking.new
-    @brands = Car.select(:brand).distinct.pluck(:brand)
+    @booking = current_user.bookings.build
+    authorize @booking
   end
 
   def edit
+    @booking = current_user.bookings.find(params[:id])
+    authorize @booking
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @booking = current_user.bookings.build(booking_params)
+    authorize @booking
 
     if @booking.save
-      redirect_to @booking, notice: 'Booking was successfully created.'
+      redirect_to booking_path(@booking), notice: 'Booking was successfully created.'
     else
       render :new
     end
   end
 
   def update
+    @booking = current_user.bookings.find(params[:id])
+    authorize @booking
     if @booking.update(booking_params)
       redirect_to @booking, notice: 'Booking was successfully updated.'
     else
@@ -35,17 +44,20 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking.destroy
-    redirect_to bookings_url, notice: 'Booking was successfully cancelled.'
+    @booking = current_user.bookings.find(params[:id])
+    authorize @booking
+    if @booking.destroy
+      flash[:notice] = 'Your booking was cancelled successfully'
+    else
+      puts "Failed to destroy booking: #{@booking.errors.full_messages}"
+      flash[:errors] = @booking.errors.full_messages
+    end
+    redirect_to booking_path(@booking)
   end
 
   private
   
-    def set_booking
-      @booking = Booking.find(params[:id])
-    end
-
-    def booking_params
-      params.require(:booking).permit(:user_id, :car_id, :starts_at, :ends_at, :accepted)
-    end
+  def booking_params
+    params.require(:booking).permit(:user_id, :car_id, :starts_at, :ends_at, :accepted)
+  end
 end

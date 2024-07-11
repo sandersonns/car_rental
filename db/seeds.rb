@@ -12,27 +12,6 @@ Car.destroy_all
 User.destroy_all
 puts "Database cleaned."
 
-# User.create!([
-#   { email: "haidinh@example.com", password: "password123" },
-#   { email: "johndoe@example.com", password: "password123" },
-#   { email: "appleseed@example.com", password: "password123" },
-#   { email: "mappletree@example.com", password: "password123" },
-#   { email: "pinetree@example.com", password: "password123" }
-# ])
-
-# cars_data = [
-#   { brand: "Toyota", model: "Corolla", year_of_production: 2015, address: "2024 Kincheloe Road", price_per_day: 50.0 },
-#   { brand: "Honda", model: "Civic", year_of_production: 2012, address: "2231 Thunder Road", price_per_day: 60.0 },
-#   { brand: "Ford", model: "Focus", year_of_production: 2014, address: "3598 Davis Avenue", price_per_day: 70.0 },
-#   { brand: "Chevrolet", model: "Camaro", year_of_production: 2017, address: "70 Losh Lane", price_per_day: 180.0 },
-#   { brand: "Ford", model: "Focus", year_of_production: 2016, address: "63 Ward Road", price_per_day: 90.0 },
-#   { brand: "Toyota", model: "Outback", year_of_production: 2018, address: "4225 Woodside Circle", price_per_day: 100.0 },
-#   { brand: "Ford", model: "Focus", year_of_production: 2021, address: "1681 Leisure Lane", price_per_day: 110.0 },
-#   { brand: "Tesla", model: "Model S", year_of_production: 2020, address: "3473 Goff Avenue", price_per_day: 120.0 },
-#   { brand: "Toyota", model: "Outback", year_of_production: 2021, address: "4147 Marshville Road", price_per_day: 130.0 },
-#   { brand: "Toyota", model: "Outback", year_of_production: 2020, address: "1512 Pinnickinnick Street", price_per_day: 140.0 }
-# ]
-
 # Manually create renters (users with cars for rent)
 renters = [
   {

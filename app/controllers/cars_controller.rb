@@ -2,21 +2,24 @@ class CarsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @cars = Car.all
+    @cars = policy_scope(Car)
   end
 
   def show
     @car = Car.find(params[:id])
+    authorize @car
   end
 
   def new
     @car = current_user.cars.build
+    authorize @car
   end
 
   def create
     @car = current_user.cars.build(car_params)
+    authorize @car
     if @car.save
-      redirect_to @car, notice: 'Car was successfully created.'
+      redirect_to car_path(@car), notice: 'Car was successfully created.'
     else
       render :new
     end
@@ -24,12 +27,14 @@ class CarsController < ApplicationController
 
   def edit
     @car = current_user.cars.find(params[:id])
+    authorize @car
   end
 
   def update
     @car = current_user.cars.find(params[:id])
+    authorize @car
     if @car.update(car_params)
-      redirect_to @car, notice: 'Your new car was successfully updated.'
+      redirect_to car_path(@car), notice: 'Your new car was successfully updated.'
     else
       render :edit
     end
@@ -37,6 +42,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car = current_user.cars.find(params[:id])
+    authorize @car
 
     if @car.delete
       flash[:notice] = 'Your car was deleted successfully'

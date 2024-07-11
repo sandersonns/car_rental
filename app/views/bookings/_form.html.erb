@@ -1,9 +1,13 @@
-<div data-controller="hello">
+<%# <div data-controller="hello">
   <input data-hello-target="name" type="text">
   <button data-action="click->hello#greet">Greet</button>
-</div>
+</div> %>
 
 <%= form_with model: @booking, local: true, data: { controller: "flatpickr" } do |form| %>
+
+  <%= form.label :user_id, 'User' %>
+    <p><%= current_user.email %></p>
+
   <div>
     <%= form.label :starts_at, 'Starts at' %>
     <%= form.text_field :starts_at, class: 'fp_date_time' %>
@@ -15,13 +19,8 @@
   </div>
 
   <div>
-    <%= form.label :user_id, 'User' %>
-    <%= form.collection_select :user_id, User.all, :id, :email, prompt: 'Select a User' %>
-  </div>
-
-  <div>
     <%= form.label :car_id, 'Car' %>
-    <%= form.collection_select :car_id, Car.all, :id, :model, prompt: 'Select a Car' %>
+    <%= form.collection_select :car_id, Car.all.where.not(id: current_user.cars.pluck(:id)), :id, :model, prompt: 'Select a Car' %>
   </div>
   
   <div>

@@ -84,3 +84,5 @@ end
 gem "pundit"
 
 gem 'leaflet-rails', '~> 1.7'
+
+gem "geocoder"
