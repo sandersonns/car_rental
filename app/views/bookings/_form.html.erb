@@ -8,15 +8,26 @@
   <%= form.label :user_id, 'User' %>
     <p><%= current_user.email %></p>
 
+
+
   <div>
-    <%= form.label :starts_at, 'Starts at' %>
-    <%= form.text_field :starts_at, class: 'fp_date_time' %>
+    <%= form.label :date_range, 'Date Range' %>
+    <%= form.text_field :date_range, class: 'fp_date_time', data: { controller: 'flatpickr' } %>
+  </div>
+
+  <%= form.hidden_field :starts_at, value: "", data: { flatpickr_target: 'startsAt' } %>
+  <%= form.hidden_field :ends_at, value: "", data: { flatpickr_target: 'endsAt' } %>
+
+<%# 
+  <div>
+    <%= form.label :starts_at, 'Starts at' 
+    <%= form.text_field :starts_at, class: 'fp_date_time' 
   </div>
 
   <div>
-    <%= form.label :ends_at, 'Ends at' %>
-    <%= form.text_field :ends_at, class: 'fp_date_time' %>
-  </div>
+    <%= form.label :ends_at, 'Ends at' 
+    <%= form.text_field :ends_at, class: 'fp_date_time'
+  </div> %>
 
   <div>
     <%= form.label :car_id, 'Car' %>

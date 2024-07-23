@@ -16,8 +16,8 @@
       <tr>
         <td><%= booking.user.email %></td>
         <td><%= booking.car.brand %> <%= booking.car.model %></td>
-        <td><%= booking.starts_at %></td>
-        <td><%= booking.ends_at %></td>
+        <td><%= booking.starts_at.strftime("%A, %d-%m-%Y") %></td>
+        <td><%= booking.ends_at.strftime("%A, %d-%m-%Y") %></td>
         <td><%= booking.accepted ? 'Yes' : 'No' %></td>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>

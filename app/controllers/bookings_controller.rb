@@ -23,7 +23,8 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = current_user.bookings.build(booking_params)
+    starts_at, ends_at = params[:booking][:date_range].split(" to ")
+    @booking = current_user.bookings.build(booking_params.merge(starts_at: starts_at, ends_at: ends_at))
     authorize @booking
 
     if @booking.save
