@@ -3,24 +3,29 @@ import flatpickr from "flatpickr";
 
 export default class extends Controller {
   static targets = [ "startsAt", "endsAt" ]
+  // static targets = [ "startsAt"]
   connect() {
-    // console.log("Hello from flatpickr_controller.js")
-    // flatpickr(this.element, {
-    //   altInput: true,
-    //   altFormat: "F j, Y",
+    console.log("Hello from flatpickr_controller.js")
+    // working
+    // flatpickr(".fp_date_time", {
+    //   enableTime: true,
     //   dateFormat: "Y-m-d",
-    // })
-    // flatpickr(this.startsAtTarget, {})
-    // flatpickr(this.endsAtTarget, {})
+    // }
+    // );  
 
     flatpickr(".fp_date_time", {
-      enableTime: true,
+      mode: "range",
+      // enableTime: true,
+      minDate: "today",
       dateFormat: "Y-m-d",
+      onChange: this.dateChanged.bind(this),
+  });  
+}
+    dateChanged(selectedDates) {
+      const [startsAt, endsAt] = selectedDates;
+      this.element.dataset.startsAt = startsAt;
+      this.element.dataset.endsAt = endsAt;
     }
-    );  
 
-    flatpickr(".fp_date");  
-
-  }
 
 }
